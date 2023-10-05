@@ -1,0 +1,86 @@
+<form role="form" name="form">
+  <div>
+    <table id="tours-table">
+      <tbody>
+        <tr ng-repeat="t in tours">
+          <td>
+            <input id="{{t.id}}"
+                   type="button"
+                   class="tour-button form-control"
+                   value="{{t.value}}"/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    #tours-table {
+      width: 100%;
+    }
+
+    #tours-table input[selected='true'] {
+      background-color: #eee;
+    }
+
+    #tours-table input[selected='false'] {
+      background-color: #fff;
+    }
+
+    #tours-table td {
+      padding: 10px;
+    }
+  </style>
+
+  <script cam-script type="text/form-script">
+      function onButtonClicked(btnElement) {
+          let buttonList = document.querySelectorAll('#tours-table tbody input');
+
+          for (let i = 0; i < buttonList.length; ++i)
+              buttonList[i].setAttribute('selected', false);
+
+          btnElement.setAttribute('selected', true);
+      }
+
+      function addEventListener() {
+          let tourButtons = document.querySelectorAll('input.tour-button');
+
+          for (let i = 0; i < tourButtons.length; ++i) {
+              let btn = tourButtons[i];
+
+              btn.addEventListener('click', e => onButtonClicked(e.target));
+          }
+      }
+
+      camForm.on('form-loaded', function() {
+          camForm.variableManager.fetchVariable('toursList');
+      });
+
+      camForm.on('variables-fetched', function() {
+          let buttonTableBody = document.querySelector('#tours-table tbody');
+          let toursListJSON = camForm.variableManager.variableValue('toursList');
+
+          $scope.tours = [];
+
+          for (let t in toursListJSON) {
+              let obj = {
+                'id': t,
+                'value': toursListJSON[t]
+              };
+
+              $scope.tours.push(obj);
+          }
+
+          setTimeout(addEventListener, 100);
+      });
+
+      camForm.on('submit', function() {
+          const element = document.querySelector('[selected=true]');
+          camForm.variableManager.createVariable({
+              name: 'tourId',
+              type: 'Integer',
+              value: element.id
+          });
+      });
+    </script>
+</form>

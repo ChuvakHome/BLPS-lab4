@@ -1,0 +1,152 @@
+<form role="form" name="form">
+  <div>
+    <div class="form-group">
+      <div class="form-group">
+        <input type="text"
+               name="ccNumber"
+               cam-variable-name="ccOwner"
+               cam-variable-type="String"
+               placeholder="Владелец карты"
+               inputmode="text"
+               pattern="[A-Z]+ [A-Z]+"
+               autocomplete="cc-name"
+               minlength="3"
+               class="cc-name-field form-control" />
+      </div>
+      <div class="form-group">
+        <input type="tel"
+               name="ccNumber"
+               cam-variable-name="ccNumber"
+               cam-variable-type="String"
+               placeholder="Номер карты"
+               inputmode="numeric"
+               pattern="(?:\d{4} ){3}\d{4}"
+               autocomplete="cc-number"
+               minlength="19"
+               maxlength="19"
+               class="cc-number-field form-control" />
+      </div>
+      <div class="form-group">
+          <table class="cc-info-table">
+            <tr>
+              <td class="card-exp-cell">
+                <input type="tel"
+                       name="ccExpMonth"
+                       cam-variable-name="ccExpireMonth"
+                       cam-variable-type="Integer"
+                       inputmode="numeric"
+                       pattern="(0[1-9])|(1[0-2])"
+                       autocomplete="cc-exp-month"
+                       minlength="2"
+                       maxlength="2"
+                       class="cc-expire-month-field form-control"
+                       placeholder="ММ"/>
+              </td>
+              <td class="card-exp-cell">/</td>
+              <td class="card-exp-cell">
+                <input type="tel"
+                       name="ccExpYear"
+                       cam-variable-name="ccExpireYear"
+                       cam-variable-type="Integer"
+                       inputmode="numeric"
+                       pattern="(2[4-9])|([3-9]\d)"
+                       autocomplete="cc-exp-year"
+                       minlength="2"
+                       maxlength="2"
+                       class="cc-expire-year-field form-control"
+                       placeholder="ГГ"/>
+              </td>
+              <td id="card-csc-cell">
+                <input type="password"
+                       name="ccCSC"
+                       cam-variable-name="ccCSC"
+                       cam-variable-type="Integer"
+                       inputmode="numeric"
+                       pattern="\d{3}"
+                       autocomplete="cc-csc"
+                       minlength="3"
+                       maxlength="3"
+                       class="cc-csc-field form-control"
+                       placeholder="CVV"/>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
+  </div>
+
+  <style>
+    input.cc-expire-month-field {
+      width: 3.3em;
+    }
+
+    input.cc-expire-year-field {
+      width: 3em;
+    }
+
+    input.cc-csc-field {
+      width: 6em;
+      text-align: center;
+    }
+
+    table.cc-info-table td.card-exp-cell {
+      width: 0;
+    }
+
+    table.cc-info-table td#card-csc-cell {
+      padding-left: 10px;
+    }
+  </style>
+
+  <script cam-script type="text/form-script">
+      /*function onButtonClicked(btnElement) {
+          let buttonList = document.querySelectorAll('#tours-table tbody input');
+
+          for (let i = 0; i < buttonList.length; ++i)
+              buttonList[i].setAttribute('selected', false);
+
+          btnElement.setAttribute('selected', true);
+      }
+
+      function addEventListener() {
+          let tourButtons = document.querySelectorAll('input.tour-button');
+
+          for (let i = 0; i < tourButtons.length; ++i) {
+              let btn = tourButtons[i];
+
+              btn.addEventListener('click', e => onButtonClicked(e.target));
+          }
+      }
+
+      camForm.on('form-loaded', function() {
+          camForm.variableManager.fetchVariable('toursList');
+      });
+
+      camForm.on('variables-fetched', function() {
+          let buttonTableBody = document.querySelector('#tours-table tbody');
+          let toursListJSON = camForm.variableManager.variableValue('toursList');
+
+          $scope.tours = [];
+
+          for (let t in toursListJSON) {
+              let obj = {
+                'id': t,
+                'value': toursListJSON[t]
+              };
+
+              $scope.tours.push(obj);
+          }
+
+          setTimeout(addEventListener, 100);
+      });
+
+      camForm.on('submit', function() {
+          const element = document.querySelector('[selected=true]');
+          camForm.variableManager.createVariable({
+              name: 'tourId',
+              type: 'Integer',
+              value: element.id
+          });
+      });*/
+    </script>
+</form>

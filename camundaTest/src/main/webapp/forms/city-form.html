@@ -1,0 +1,86 @@
+<form role="form" name="form">
+  <div>
+    <table id="cities-table">
+      <tbody>
+      <tr ng-repeat="c in cities">
+        <td>
+          <input id="{{c.id}}"
+                 type="button"
+                 class="city-button form-control"
+                 value="{{c.value}}"/>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    #cities-table {
+      width: 100%;
+    }
+
+    #cities-table input[selected='true'] {
+      background-color: #eee;
+    }
+
+    #cities-table input[selected='false'] {
+      background-color: #fff;
+    }
+
+    #cities-table td {
+      padding: 10px;
+    }
+  </style>
+
+  <script cam-script type="text/form-script">
+      function onButtonClicked(btnElement) {
+          let buttonList = document.querySelectorAll('#cities-table tbody input');
+
+          for (let i = 0; i < buttonList.length; ++i)
+              buttonList[i].setAttribute('selected', false);
+
+          btnElement.setAttribute('selected', true);
+      }
+
+      function addEventListener() {
+          let cityButtons = document.querySelectorAll('input.city-button');
+
+          for (let i = 0; i < cityButtons.length; ++i) {
+              let btn = cityButtons[i];
+
+              btn.addEventListener('click', e => onButtonClicked(e.target));
+          }
+      }
+
+      camForm.on('form-loaded', function() {
+          camForm.variableManager.fetchVariable('citiesList');
+      });
+
+      camForm.on('variables-fetched', function() {
+          let buttonTableBody = document.querySelector('#cities-table tbody');
+          let citiesListJSON = camForm.variableManager.variableValue('citiesList');
+
+          $scope.cities = [];
+
+          for (let t in citiesListJSON) {
+              let obj = {
+                'id': t,
+                'value': citiesListJSON[t]
+              };
+
+              $scope.cities.push(obj);
+          }
+
+          setTimeout(addEventListener, 100);
+      });
+
+      camForm.on('submit', function() {
+          const element = document.querySelector('[selected=true]');
+          camForm.variableManager.createVariable({
+              name: 'cityId',
+              type: 'Integer',
+              value: element.id
+          });
+      });
+    </script>
+</form>

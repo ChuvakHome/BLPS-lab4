@@ -1,0 +1,24 @@
+<form role="form" name="form">
+    <div class="form-group">
+        <p><strong>Оплата провалилась.</strong></p>
+        <p id="payment-error-message" style="color: red; font-weight: bold">{{paymentErrorMessage}}</p>
+        <div class="form-group">
+            <label style="font-weight: 100;" for="change-card-info">Ввести данные карты заново</label>
+            <input id="change-card-info"
+                   cam-variable-name="doRetry"
+                   cam-variable-type="Boolean"
+                   type="checkbox">
+        </div>
+    </div>
+
+    <script cam-script type="text/form-script">
+        camForm.on('form-loaded', function() {
+            camForm.variableManager.fetchVariable('paymentErrorMessage');
+        });
+
+        camForm.on('variables-fetched', function() {
+            $scope.paymentErrorMessage = camForm.variableManager.variableValue('paymentErrorMessage');
+            //document.getElementById('payment-error-message').innerText = $scope.paymentErrorMessage;
+        });
+    </script>
+</form>

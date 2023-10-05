@@ -1,0 +1,67 @@
+
+[cam-widget-header] {
+    border-top-color: #0f80ff;
+}
+
+[cam-widget-header] .navbar-brand {
+    display: flex;
+}
+
+[cam-widget-header] .navbar-brand .brand-logo {
+    background-image: url(../assets/images/blue-logo.png);
+    width: 40px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: 30px;
+}
+
+[cam-widget-header] .navbar-brand .brand-logo svg {
+    width: 0;
+}
+
+[cam-widget-header] .brand-logo:before {
+    display: none;
+}
+
+.btn-primary {
+    background-color: #0f80ff;
+    border-color: #0f80ff;	
+}
+
+.btn-primary:active {
+    background-color: #0f80ff;
+    border-color: #670c19;
+}
+
+.btn-primary:hover {
+    background-color: #005493;
+    border-color: #2c050a;
+}
+
+.btn-primary:focus {
+    background-color: #005493;
+    border-color: #2c050a;
+}
+
+.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled.focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary.focus {
+    background-color: #006894;
+    border-color: #005493;
+}
+
+.btn-primary:active:hover, .btn-primary.active:hover, .open>.dropdown-toggle.btn-primary:hover, .btn-primary:active:focus, .btn-primary.active:focus, .open>.dropdown-toggle.btn-primary:focus, .btn-primary:active.focus, .btn-primary.active.focus, .open>.dropdown-toggle.btn-primary.focus {
+    background-color: #005493;
+    border-color: #2c050a;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+    border-bottom-color: #0f80ff;
+}
+
+.three-cols-layout .column-left .list-unstyled>.item.active, .three-cols-layout .column-center .list-unstyled>li.active, .three-cols-layout .column-left .list-unstyled>.item.active:hover, .three-cols-layout .column-center .list-unstyled>li.active:hover {
+    border-color: #0f80ff;
+}
+
+/*[cam-widget-header] {
+  border-bottom-color: blue;
+}
+*/

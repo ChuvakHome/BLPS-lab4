@@ -1,0 +1,406 @@
+<form role="form" name="form">
+    <div id="main-form-div">
+        <div style="margin: 5px;">
+            <button class="pretty-button" id="add-tourist-button">+</button>
+            <details id="tourist-details-{{$index + 1}}" open class="form-group" ng-repeat="t in [].constructor(touristsToAddCount) track by $index">
+                <summary class="tourist-info-summary">Турист</summary>
+                <table class="form-group tourist-info-table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <button id="remove-tourist-button-{{$index + 1}}" button-number="{{$index + 1}}" class="remove-tourist-btn pretty-button">—</button>
+                            </td>
+                            <td>
+                                <fieldset class="form-group document-type-fs" name="touristFieldsSet">
+                                    <legend>Данные туриста</legend>
+                                    <label for="document-type-select-{{$index + 1}}">Тип подтверждающего документа</label>
+                                    <div class="form-group">
+                                        <select id="document-type-select-{{$index + 1}}"
+                                                name="documentType"
+                                                cam-variable-name="documentType"
+                                                cam-variable-type="String"
+                                                ng-model="documentType"
+                                                value="PASSPORT"
+                                                class="form-control document-type-select">
+                                            <option value="PASSPORT">Паспорт гражданина РФ</option>
+                                            <option value="INTERNATIONAL_PASSPORT">Загранпаспорт</option>
+                                        </select>
+                                    </div>
+                                    <div ng-switch on="documentType">
+                                        <div ng-switch-when="PASSPORT">
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       aria-required="true"
+                                                       name="lastName"
+                                                       cam-variable-name="lastName"
+                                                       cam-variable-type="String"
+                                                       placeholder="Фамилия"
+                                                       class="passport-last-name-field form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       aria-required="true"
+                                                       name="firstName"
+                                                       cam-variable-name="firstName"
+                                                       cam-variable-type="String"
+                                                       placeholder="Имя"
+                                                       class="passport-first-name-field form-control" />
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="middleName"
+                                                       cam-variable-name="middleName"
+                                                       cam-variable-type="String"
+                                                       placeholder="Отчество"
+                                                       class="form-control" />
+                                            </div>
+                                            <label for="passport-gender-select-{{$index + 1}}">Пол</label>
+                                            <div class="form-group">
+                                                <select id="passport-gender-select-{{$index + 1}}"
+                                                        name="gender"
+                                                        class="form-control"
+                                                        value="MALE">
+                                                    <option value="MALE">Мужской</option>
+                                                    <option value="FEMALE">Женский</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="birthDate"
+                                                       class="form-control"
+                                                       placeholder="Дата рождения"
+                                                       fake-input-type
+                                                       fake-type="text"
+                                                       true-type="date"
+                                                       aria-required="true"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="issueDate"
+                                                       class="form-control"
+                                                       placeholder="Дата выдачи паспорта"
+                                                       fake-input-type
+                                                       fake-type="text"
+                                                       true-type="date"
+                                                       aria-required="true"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input aria-required="true"
+                                                       type="number"
+                                                       name="series"
+                                                       cam-variable-name="series"
+                                                       cam-variable-type="Integer"
+                                                       class="form-control"
+                                                       placeholder="Серия"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="number"
+                                                       name="number"
+                                                       cam-variable-name="number"
+                                                       cam-variable-type="Integer"
+                                                       class="form-control"
+                                                       placeholder="Номер"/>
+                                            </div>
+                                        </div>
+                                        <div ng-switch-default>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       aria-required="true"
+                                                       name="firstName"
+                                                       cam-variable-name="firstName"
+                                                       cam-variable-type="String"
+                                                       class="form-control"
+                                                       placeholder="First Name"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="lastName"
+                                                       cam-variable-name="lastName"
+                                                       cam-variable-type="String"
+                                                       class="form-control"
+                                                       placeholder="Last Name"/>
+                                            </div>
+                                            <label for="international-passport-gender-select-{{$index + 1}}">Gender</label>
+                                            <div class="form-group">
+                                                <select id="international-passport-gender-select-{{$index + 1}}"
+                                                        name="gender"
+                                                        value="MALE"
+                                                        class="form-control">
+                                                    <option value="MALE">MALE</option>
+                                                    <option value="FEMALE">FEMALE</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="birthDate"
+                                                       class="form-control"
+                                                       placeholder="Birth Date"
+                                                       fake-input-type
+                                                       fake-type="text"
+                                                       true-type="date"
+                                                       aria-required="true"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text"
+                                                       name="expireDate"
+                                                       class="form-control"
+                                                       placeholder="Expire Date"
+                                                       fake-input-type
+                                                       fake-type="text"
+                                                       true-type="date"
+                                                       aria-required="true"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input aria-required="true"
+                                                       type="number"
+                                                       name="series"
+                                                       cam-variable-name="series"
+                                                       cam-variable-type="Integer"
+                                                       class="form-control"
+                                                       placeholder="Series"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input aria-required="true"
+                                                       type="number"
+                                                       name="number"
+                                                       cam-variable-name="number"
+                                                       cam-variable-type="Integer"
+                                                       class="form-control"
+                                                       placeholder="Number"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input aria-required="true"
+                                                       type="text"
+                                                       name="citizenship"
+                                                       cam-variable-name="citizenship"
+                                                       cam-variable-type="String"
+                                                       class="form-control"
+                                                       placeholder="Citizenship"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email"
+                                               name="email"
+                                               inputmode="email"
+                                               class="form-control"
+                                               placeholder="Адрес электронной почты"/>
+                                    </div>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </details>
+        </div>
+        <div class="form-group">
+            <input type="text"
+                   name="bookDate"
+                   class="form-control"
+                   placeholder="Дата бронирования"
+                   fake-input-type
+                   fake-type="text"
+                   true-type="date"
+                   aria-required="true"/>
+        </div>
+        <div class="form-group">
+            <input type="number"
+                   name="bookDays"
+                   class="form-control"
+                   placeholder="Длительность бронирования (в днях)"
+                   aria-required="true"/>
+        </div>
+    </div>
+
+    <style>
+        .document-type-fs {
+            border: 2px solid #c0c0c0;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        details[open] > summary:first-of-type {
+            list-style-type: disclosure-open;
+        }
+
+        details > summary:first-of-type {
+            display: list-item;
+            counter-increment: list-item 0;
+            list-style: inside disclosure-closed;
+        }
+
+        button.pretty-button {
+            padding: 5px 15px;
+            border: 2px solid #c0c0c0;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .tourist-info-table {
+            width: 100%;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+    </style>
+
+    <script cam-script type="text/form-script">
+        function addEventListenerForButton(btnId) {
+            let btn = document.getElementById(`remove-tourist-button-${btnId}`);
+
+            if (btn !== null) {
+                btn.addEventListener('click', e => removeTourist(e.target));
+                btn.setAttribute('tourist-info-number', `${btnId}`)
+            }
+        }
+
+        function setListenersForInput(inputElement) {
+            inputElement.onclick = e => e.target.type = inputElement.getAttribute('true-type');
+            inputElement.onfocus = e => e.target.type = inputElement.getAttribute('true-type');
+            inputElement.onblur = e => e.target.type = inputElement.getAttribute('fake-type');
+        }
+
+        function setListenersForFakeInputs() {
+            const inputFakeElements = document.querySelectorAll('input[fake-input-type]');
+
+            for (let i = 0; i < inputFakeElements.length; ++i)
+                setListenersForInput(inputFakeElements[i]);
+        }
+
+        function changeSummaryText() {
+            let summaryList = document.getElementsByClassName('tourist-info-summary');
+
+            for (let i = 0; i < summaryList.length; ++i)
+                summaryList[i].innerText = `Турист ${i + 1}`;
+        }
+
+        function addTourist() {
+            const newElem = $scope.touristsToAddCount + 1;
+            $scope.touristsToAddCount++;
+
+            setTimeout(() => changeSummaryText(), 500);
+
+            setTimeout(() => {
+                addEventListenerForButton(newElem);
+
+                setListenersForFakeInputs();
+
+                document.getElementById(`document-type-select-${newElem}`).addEventListener('change', setListenersForFakeInputs);
+            }, 1000);
+        }
+
+        function removeTourist(btn) {
+            if ($scope.touristsToAddCount == 1)
+                return;
+
+            let touristNumber = btn.getAttribute('tourist-info-number');
+
+            let touristDetails = document.getElementById(`tourist-details-${touristNumber}`);
+
+            let touristDetailsParent = touristDetails.parentNode;
+
+            touristDetails.parentNode.removeChild(touristDetails);
+
+            $scope.touristsToAddCount--;
+
+            changeSummaryText();
+        }
+
+        function getTouristInfoFromFieldSet(touristFieldset) {
+            const documentType = touristFieldset.elements.documentType.value;
+
+            let passportJSON = null;
+            let internationalPassportJSON = null;
+
+            if (documentType === 'PASSPORT') {
+                passportJSON = {
+                    lastName: touristFieldset.elements.lastName.value,
+                    firstName: touristFieldset.elements.firstName.value,
+                    middleName: touristFieldset.elements.middleName.value,
+                    gender: touristFieldset.elements.gender.value,
+                    birthDate: touristFieldset.elements.birthDate.value,
+                    issueDate: touristFieldset.elements.issueDate.value,
+                    series: touristFieldset.elements.series.value,
+                    number: touristFieldset.elements.number.value,
+                };
+            }
+            else {
+                internationalPassportJSON = {
+                    firstName: touristFieldset.elements.firstName.value,
+                    lastName: touristFieldset.elements.lastName.value,
+                    gender: touristFieldset.elements.gender.value,
+                    birthDate: touristFieldset.elements.birthDate.value,
+                    expireDate: touristFieldset.elements.expireDate.value,
+                    series: touristFieldset.elements.series.value,
+                    number: touristFieldset.elements.number.value,
+                    citizenship: touristFieldset.elements.citizenship.value
+                };
+            }
+
+            return {
+                passport: passportJSON,
+                internationalPassport: internationalPassportJSON,
+                email: touristFieldset.elements.email.value
+            };
+        }
+
+        function validateTouristInfo() {
+            //input.setCustomValidity('msg');
+            //input.reportValidity();
+        }
+
+        camForm.on('form-loaded', function() {
+            $scope.documentType = 'PASSPORT';
+            $scope.touristsCount = 0;
+            $scope.touristsToAddCount = 1;
+
+            document.getElementById('add-tourist-button').addEventListener('click', addTourist);
+
+            camForm.variableManager.fetchVariable('touristsCount');
+        });
+
+        camForm.on('variables-fetched', function() {
+            $scope.touristsCount = camForm.variableManager.variableValue('touristsCount');
+
+            addEventListenerForButton(1);
+
+            setListenersForFakeInputs();
+
+            document.getElementById('document-type-select-1').addEventListener('change', setListenersForFakeInputs);
+
+            changeSummaryText();
+        });
+
+        camForm.on('submit', function(evt) {
+            //evt.submitPrevented = true;
+            //camForm.variableManager.variableValue('touristsCount', $scope.touristsCount + $scope.touristsToAddCount);
+
+            let form = camForm.formElement[0];
+            let touristInfoListJSON = [].constructor($scope.touristsToAddCount);
+
+            if ($scope.touristsToAddCount > 1) {
+                for (let i = 0; i < $scope.touristsToAddCount; ++i)
+                    touristInfoListJSON[i] = getTouristInfoFromFieldSet(form.elements.touristFieldsSet[i]);
+            }
+            else
+                touristInfoListJSON[0] = getTouristInfoFromFieldSet(form.elements.touristFieldsSet);
+
+            camForm.variableManager.variableValue('touristsCount', $scope.touristsCount + $scope.touristsToAddCount);
+            camForm.variableManager.createVariable({
+                name: 'tourInfo',
+                type: 'Object',
+                value: {
+                    touristList: touristInfoListJSON,
+                    bookDate: camForm.formElement[0].elements.bookDate.value,
+                    bookDays: camForm.formElement[0].elements.bookDays.value,
+                },
+                valueInfo: {
+                    serializationDataFormat: 'application/json',
+                    objectTypeName: 'ru.itmo.se.bl.lab4.dto.TourInfoDTO'
+                }
+            });
+            //evt.submitPrevented = true;
+        });
+    </script>
+</form>

@@ -1,0 +1,98 @@
+<form role="form" name="form">
+  <div>
+    <table id="travels-table">
+      <tbody>
+      <tr>
+        <td>
+          <input id="-1"
+                 type="button"
+                 class="travel-button form-control"
+                 value="Без перелета"/>
+        </td>
+      </tr>
+      <tr ng-repeat="t in travels">
+        <td>
+          <input id="{{t.id}}"
+                 type="button"
+                 class="travel-button form-control"
+                 value="{{t.value}}"/>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <style>
+    #travels-table {
+      width: 100%;
+    }
+
+    #travels-table input[selected='true'] {
+      background-color: #eee;
+    }
+
+    #travels-table input[selected='false'] {
+      background-color: #fff;
+    }
+
+    #travels-table td {
+      padding: 10px;
+    }
+
+    #travels-table input {
+      height: 100%;
+    }
+  </style>
+
+  <script cam-script type="text/form-script">
+      function onButtonClicked(btnElement) {
+          let buttonList = document.querySelectorAll('#travels-table tbody input');
+
+          for (let i = 0; i < buttonList.length; ++i)
+              buttonList[i].setAttribute('selected', false);
+
+          btnElement.setAttribute('selected', true);
+      }
+
+      function addEventListener() {
+          let travelButtons = document.querySelectorAll('input.travel-button');
+
+          for (let i = 0; i < travelButtons.length; ++i) {
+              let btn = travelButtons[i];
+
+              btn.addEventListener('click', e => onButtonClicked(e.target));
+          }
+      }
+
+      camForm.on('form-loaded', function() {
+          camForm.variableManager.fetchVariable('travelsList');
+      });
+
+      camForm.on('variables-fetched', function() {
+          let buttonTableBody = document.querySelector('#travels-table tbody');
+          let travelsListJSON = camForm.variableManager.variableValue('travelsList');
+
+          $scope.travels = [];
+
+          for (let t in travelsListJSON) {
+              let obj = {
+                'id': t,
+                'value': travelsListJSON[t]
+              };
+
+              $scope.travels.push(obj);
+          }
+
+          setTimeout(addEventListener, 100);
+      });
+
+      camForm.on('submit', function() {
+          const element = document.querySelector('[selected=true]');
+          camForm.variableManager.createVariable({
+              name: 'travelId',
+              type: 'Integer',
+              value: element.id
+          });
+      });
+    </script>
+</form>

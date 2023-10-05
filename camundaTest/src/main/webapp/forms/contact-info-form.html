@@ -1,0 +1,85 @@
+<form role="form" name="form">
+  <div>
+    <div class="form-group">
+      <div class="form-group">
+        <input required
+               type="tel"
+               name="phoneNumber"
+               cam-variable-name="contactPhoneNumber"
+               cam-variable-type="String"
+               placeholder="Номер телефона"
+               inputmode="tel"
+               autocomplete="tel"
+               minlength="18"
+               class="phone-number-field form-control" />
+      </div>
+      <div class="form-group">
+        <input required
+               type="email"
+               name="contactEmail"
+               cam-variable-name="contactEmail"
+               cam-variable-type="String"
+               placeholder="Адрес электронной почты"
+               autocomplete="email"
+               minlength="5"
+               class="email-field form-control" />
+      </div>
+    </div>
+  </div>
+
+  <style>
+
+  </style>
+
+  <script cam-script type="text/form-script">
+      /*function onButtonClicked(btnElement) {
+          let buttonList = document.querySelectorAll('#tours-table tbody input');
+
+          for (let i = 0; i < buttonList.length; ++i)
+              buttonList[i].setAttribute('selected', false);
+
+          btnElement.setAttribute('selected', true);
+      }
+
+      function addEventListener() {
+          let tourButtons = document.querySelectorAll('input.tour-button');
+
+          for (let i = 0; i < tourButtons.length; ++i) {
+              let btn = tourButtons[i];
+
+              btn.addEventListener('click', e => onButtonClicked(e.target));
+          }
+      }
+
+      camForm.on('form-loaded', function() {
+          camForm.variableManager.fetchVariable('toursList');
+      });
+
+      camForm.on('variables-fetched', function() {
+          let buttonTableBody = document.querySelector('#tours-table tbody');
+          let toursListJSON = camForm.variableManager.variableValue('toursList');
+
+          $scope.tours = [];
+
+          for (let t in toursListJSON) {
+              let obj = {
+                'id': t,
+                'value': toursListJSON[t]
+              };
+
+              $scope.tours.push(obj);
+          }
+
+          setTimeout(addEventListener, 100);
+      });
+
+      camForm.on('submit', function() {
+          const element = document.querySelector('[selected=true]');
+          camForm.variableManager.createVariable({
+              name: 'tourId',
+              type: 'Integer',
+              value: element.id
+          });
+      });*/
+    </script>
+</form>

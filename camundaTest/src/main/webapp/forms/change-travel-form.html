@@ -1,0 +1,57 @@
+<form role="form" name="form">
+  <div class="form-group">
+    <p><strong>Для выбранного тура не найдено ни одного авиаперелета.</strong></p>
+    <div>
+      <table>
+        <tr>
+          <td>
+            <input id="change-tour"
+                   type="radio"
+                   name="changeTravelOption"
+                   checked
+                   value="1"/>
+            <label style="font-weight: 100;" for="change-tour">Выбрать другой тур</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input id="cancel-booking"
+                   type="radio"
+                   name="changeTravelOption"
+                   value="2"/>
+            <label style="font-weight: 100;" for="cancel-booking">Отменить бронирование</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input id="no-travel"
+                   type="radio"
+                   name="changeTravelOption"
+                   value="3"/>
+            <label style="font-weight: 100;" for="no-travel">Без перелета</label>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <script cam-script type="text/form-script">
+      camForm.on('submit', function() {
+          const changeTravelOption = camForm.formElement[0].elements.changeTravelOption.value;
+
+          if (changeTravelOption === '3') {
+              camForm.variableManager.createVariable({
+                  name: 'travelId',
+                  type: 'Integer',
+                  value: -1
+              });
+          }
+
+          camForm.variableManager.createVariable({
+              name: 'changeTravelOption',
+              type: 'Integer',
+              value: changeTravelOption
+          });
+      });
+    </script>
+</form>
