@@ -2,6 +2,7 @@ package ru.itmo.se.bl.lab4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itmo.se.bl.lab4.entity.TouristInfo;
 import ru.itmo.se.bl.lab4.entity.Travel;
 import ru.itmo.se.bl.lab4.entity.TravelBooking;
@@ -35,29 +36,24 @@ public class TravelBookingService {
         repo.save(travelBooking);
     }
 
+    @Transactional
     public void addBooking(TravelBookingRequest bookingRequest) throws TravelNotFoundException {
-        try {
-            int travelId = bookingRequest.getTravelId();
-            Travel travel = travelId < 0 ? null : travelService.getById(travelId);
+        int travelId = bookingRequest.getTravelId();
+        Travel travel = travelId < 0 ? null : travelService.getById(travelId);
 
-            List<TravelBooking> bookings = new ArrayList<>();
+        List<TravelBooking> bookings = new ArrayList<>();
 
-            for (TouristInfo info: bookingRequest.getTouristInfoList()) {
-                if (travel != null) {
-                    TravelBooking travelBooking = new TravelBooking();
-                    travelBooking.setId(null);
-                    travelBooking.setTravel(travel);
-                    travelBooking.setTouristInfo(info);
+        for (TouristInfo info: bookingRequest.getTouristInfoList()) {
+            if (travel != null) {
+                TravelBooking travelBooking = new TravelBooking();
+                travelBooking.setId(null);
+                travelBooking.setTravel(travel);
+                travelBooking.setTouristInfo(info);
 
-                    bookings.add(travelBooking);
-                }
+                bookings.add(travelBooking);
             }
-
-            repo.saveAll(bookings);
-        } catch (TravelNotFoundException e) {
-//			txManager.rollback(status);
-
-            throw e;
         }
+
+        repo.saveAll(bookings);
     }
 }

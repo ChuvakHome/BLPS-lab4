@@ -25,8 +25,7 @@ public class Application {
     public static void main(String... args) {
       SpringApplication.run(List.of(
             Application.class,
-            AppConfig.class,
-            SendEmailDelegate.class
+            AppConfig.class
       ).toArray(Class[]::new), args);
     }
 

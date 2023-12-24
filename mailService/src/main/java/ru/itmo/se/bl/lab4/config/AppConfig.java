@@ -3,6 +3,7 @@ package ru.itmo.se.bl.lab4.config;
 import org.fusesource.stomp.jms.StompJmsConnectionFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableJms
 @EnableScheduling
+@ComponentScan(basePackages = "ru.itmo.se.bl.lab4.service")
 public class AppConfig {
     @Value("${stomp.jms.factory.broker-uri}")
     private String brokerURI;

@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>ru.chuvak.camunda</groupId>
+    <groupId>ru.itmo.se.bl.lab4</groupId>
     <artifactId>mailService</artifactId>
 
     <properties>
