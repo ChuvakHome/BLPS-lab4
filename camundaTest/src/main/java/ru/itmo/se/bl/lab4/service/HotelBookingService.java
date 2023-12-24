@@ -2,11 +2,11 @@ package ru.itmo.se.bl.lab4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itmo.se.bl.lab4.entity.*;
+import ru.itmo.se.bl.lab4.entity.Hotel;
+import ru.itmo.se.bl.lab4.entity.HotelBooking;
+import ru.itmo.se.bl.lab4.entity.TouristInfo;
 import ru.itmo.se.bl.lab4.exception.HotelNotFoundException;
-import ru.itmo.se.bl.lab4.exception.TravelNotFoundException;
 import ru.itmo.se.bl.lab4.model.HotelBookingRequest;
-import ru.itmo.se.bl.lab4.model.TravelBookingRequest;
 import ru.itmo.se.bl.lab4.repository.HotelBookingRepository;
 
 import java.sql.Date;
@@ -22,18 +22,6 @@ public class HotelBookingService {
     public HotelBookingService(HotelService hotelService, HotelBookingRepository repo) {
         this.hotelService = hotelService;
         this.repo = repo;
-    }
-
-    public HotelBooking getById(Integer id) {
-        return repo.findById(id).orElse(null);
-    }
-
-    public HotelBooking getByTouristInfo(TouristInfo touristInfo) {
-        return this.repo.findByTouristInfo(touristInfo);
-    }
-
-    public void saveHotelBooking(HotelBooking hotelBooking) {
-        repo.save(hotelBooking);
     }
 
     public List<HotelBooking> getBookingsByDayDifference(Date date, int days) {
@@ -60,8 +48,6 @@ public class HotelBookingService {
 
             repo.saveAll(bookings);
         } catch (HotelNotFoundException e) {
-//			txManager.rollback(status);
-
             throw e;
         }
     }

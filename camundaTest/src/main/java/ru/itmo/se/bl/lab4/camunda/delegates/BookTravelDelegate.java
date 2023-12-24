@@ -14,8 +14,12 @@ import java.util.List;
 
 @Component
 public class BookTravelDelegate implements JavaDelegate {
+    private final TravelBookingService travelBookingService;
+
     @Autowired
-    private TravelBookingService travelBookingService;
+    public BookTravelDelegate(TravelBookingService travelBookingService) {
+        this.travelBookingService = travelBookingService;
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

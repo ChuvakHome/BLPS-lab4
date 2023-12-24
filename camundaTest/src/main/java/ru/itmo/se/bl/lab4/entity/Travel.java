@@ -1,10 +1,10 @@
 package ru.itmo.se.bl.lab4.entity;
 
-import java.sql.Date;
-
-import javax.persistence.*;
 import lombok.Data;
 import lombok.Getter;
+
+import javax.persistence.*;
+import java.sql.Date;
 
 @Entity
 @Table(name = "travels")

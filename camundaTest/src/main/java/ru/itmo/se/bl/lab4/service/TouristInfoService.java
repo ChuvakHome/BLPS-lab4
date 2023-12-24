@@ -2,14 +2,17 @@ package ru.itmo.se.bl.lab4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import ru.itmo.se.bl.lab4.entity.TouristInfo;
 import ru.itmo.se.bl.lab4.repository.TouristInfoRepository;
 
 @Service
 public class TouristInfoService {
+	private final TouristInfoRepository repo;
+
 	@Autowired
-	private TouristInfoRepository repo;
+	public TouristInfoService(TouristInfoRepository repo) {
+		this.repo = repo;
+	}
 	
 	public TouristInfo getById(Integer id) {
 		return repo.findById(id).orElse(null);

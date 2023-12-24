@@ -1,15 +1,14 @@
 package ru.itmo.se.bl.lab4.service;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Random;
-
 import org.springframework.stereotype.Service;
-
 import ru.itmo.se.bl.lab4.exception.*;
 import ru.itmo.se.bl.lab4.model.CardInfo;
 import ru.itmo.se.bl.lab4.model.PaymentRequest;
 import ru.itmo.se.bl.lab4.model.PaymentResult;
+
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Random;
 
 @Service
 public class PaymentService {
@@ -46,7 +45,6 @@ public class PaymentService {
 			PaymentResult[] paymentResults = PaymentResult.values();
 
 			return random.nextInt(10) > 4 ? PaymentResult.PAYMENT_SUCCESSFUL : paymentResults[random.nextInt(1, paymentResults.length - 1)];
-//			return random.nextInt(10) > 7 ? PaymentResult.PAYMENT_SUCCESSFUL : paymentResults[random.nextInt(1, paymentResults.length - 1)];
 		}
 		else
 			return PaymentResult.CARD_EXPIRED;

@@ -15,8 +15,12 @@ public class SendEmailDelegate implements JavaDelegate {
     @Value("${messaging.notification.queue}")
     private String queueName;
 
+    private final MessageService messageService;
+
     @Autowired
-    private MessageService messageService;
+    public SendEmailDelegate(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

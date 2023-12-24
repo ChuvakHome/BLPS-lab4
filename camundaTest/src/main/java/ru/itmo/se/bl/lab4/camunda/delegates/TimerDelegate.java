@@ -19,11 +19,14 @@ public class TimerDelegate implements JavaDelegate {
     @Value("${messaging.reminding.queue}")
     private String queueName;
 
-    @Autowired
-    private HotelBookingService hotelBookingService;
+    private final HotelBookingService hotelBookingService;
+    private final MessageService messageService;
 
     @Autowired
-    private MessageService messageService;
+    public TimerDelegate(HotelBookingService hotelBookingService, MessageService messageService) {
+        this.hotelBookingService = hotelBookingService;
+        this.messageService = messageService;
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

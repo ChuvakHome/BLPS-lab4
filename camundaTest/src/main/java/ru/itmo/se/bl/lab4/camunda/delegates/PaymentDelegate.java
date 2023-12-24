@@ -17,14 +17,16 @@ import java.sql.Date;
 
 @Component
 public class PaymentDelegate implements JavaDelegate {
-    @Autowired
-    private TravelService travelService;
+    private final TravelService travelService;
+    private final TourService tourService;
+    private final PaymentService paymentService;
 
     @Autowired
-    private TourService tourService;
-
-    @Autowired
-    private PaymentService paymentService;
+    public PaymentDelegate(TravelService travelService, TourService tourService, PaymentService paymentService) {
+        this.travelService = travelService;
+        this.tourService = tourService;
+        this.paymentService = paymentService;
+    }
 
     private static CardInfo getCardInfo(DelegateExecution delegateExecution) {
         String cardNumber = (String) delegateExecution.getVariable("ccNumber");

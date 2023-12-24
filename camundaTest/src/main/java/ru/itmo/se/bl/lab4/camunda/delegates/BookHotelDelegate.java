@@ -15,11 +15,14 @@ import java.util.List;
 
 @Component
 public class BookHotelDelegate implements JavaDelegate {
-    @Autowired
-    private TourService tourService;
+    private final TourService tourService;
+    private final HotelBookingService hotelBookingService;
 
     @Autowired
-    private HotelBookingService hotelBookingService;
+    public BookHotelDelegate(TourService tourService, HotelBookingService hotelBookingService) {
+        this.tourService = tourService;
+        this.hotelBookingService = hotelBookingService;
+    }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {

@@ -2,7 +2,9 @@ package ru.itmo.se.bl.lab4.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.itmo.se.bl.lab4.entity.*;
+import ru.itmo.se.bl.lab4.entity.TouristInfo;
+import ru.itmo.se.bl.lab4.entity.Travel;
+import ru.itmo.se.bl.lab4.entity.TravelBooking;
 import ru.itmo.se.bl.lab4.exception.TravelNotFoundException;
 import ru.itmo.se.bl.lab4.model.TravelBookingRequest;
 import ru.itmo.se.bl.lab4.repository.TravelBookingRepository;

@@ -12,10 +12,14 @@ import java.util.Map;
 
 @Component
 public class CityListDelegate implements JavaDelegate {
-    @Autowired
-    private CityService cityService;
+    private final CityService cityService;
 
-    public void execute(DelegateExecution execution) throws Exception {
+    @Autowired
+    public CityListDelegate(CityService cityService) {
+        this.cityService = cityService;
+    }
+
+    public void execute(DelegateExecution execution) {
         Map<Integer, String> cities = new HashMap<>();
 
         cityService.getAll().forEach(c -> cities.put(c.getId(), c.getLocalName()));

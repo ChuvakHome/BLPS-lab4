@@ -15,20 +15,23 @@ import java.util.List;
 @SpringBootApplication
 @EnableProcessApplication
 public class Application {
-  @Autowired
-  private RuntimeService runtimeService;
+    private final RuntimeService runtimeService;
 
-  public static void main(String... args) {
-    SpringApplication.run(List.of(
+    @Autowired
+    public Application(RuntimeService runtimeService) {
+        this.runtimeService = runtimeService;
+    }
+
+    public static void main(String... args) {
+      SpringApplication.run(List.of(
             Application.class,
             AppConfig.class,
             SendEmailDelegate.class
-    ).toArray(Class[]::new), args);
-  }
+      ).toArray(Class[]::new), args);
+    }
 
-  @EventListener
-  public void processPostDeploy(PostDeployEvent event) {
-//    runtimeService.startProcessInstanceByKey("camundaTest-process");
-    runtimeService.startProcessInstanceByKey("PeriodicProcess");
-  }
+    @EventListener
+    public void processPostDeploy(PostDeployEvent event) {
+      runtimeService.startProcessInstanceByKey("PeriodicProcess");
+    }
 }

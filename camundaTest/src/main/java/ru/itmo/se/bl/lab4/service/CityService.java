@@ -2,6 +2,7 @@ package ru.itmo.se.bl.lab4.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -9,10 +10,14 @@ import ru.itmo.se.bl.lab4.entity.City;
 import ru.itmo.se.bl.lab4.repository.CityRepository;
 
 @Service
-@AllArgsConstructor
 public class CityService {
-	private CityRepository repo;
-	
+	private final CityRepository repo;
+
+	@Autowired
+	public CityService(CityRepository repo) {
+		this.repo = repo;
+	}
+
 	public List<City> getAll() {
 		return repo.findAll();
 	}

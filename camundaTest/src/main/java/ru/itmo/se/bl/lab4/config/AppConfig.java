@@ -18,32 +18,6 @@ public class AppConfig {
     @Value("${stomp.jms.factory.password}")
     private String password;
 
-    /*private BitronixTransactionManager bitronixTransactionManager;
-
-    @Bean()
-    public TransactionManager bitronixTransactionManager() throws Throwable {
-        if (bitronixTransactionManager == null) {
-            bitronixTransactionManager = TransactionManagerServices.getTransactionManager();
-            bitronixTransactionManager.setTransactionTimeout((int) Duration.ofMinutes(10).toSeconds());
-        }
-
-        return new JakartaTransactionManager(bitronixTransactionManager);
-    }
-    
-    @Bean
-    public UsersXmlCollection usersCollection() {
-        return new UsersXmlCollection();
-    }
-
-    @Bean
-    public PlatformTransactionManager transactionManager(TransactionManager transactionManager) {
-        JtaTransactionManager jtaTransactionManager = new JtaTransactionManager();
-        jtaTransactionManager.setTransactionManager(transactionManager);
-        jtaTransactionManager.setAllowCustomIsolationLevels(true);
-
-        return jtaTransactionManager;
-    }*/
-
     @Bean
     public StompJmsConnectionFactory stompJmsConnectionFactory() {
         StompJmsConnectionFactory factory = new StompJmsConnectionFactory();
@@ -54,14 +28,4 @@ public class AppConfig {
 
         return factory;
     }
-
-//    @Bean
-//    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory() {
-//        DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-//        factory.setConnectionFactory(stompJmsConnectionFactory());
-//        factory.setSessionTransacted(true);
-//        factory.setConcurrency("5");
-//
-//        return factory;
-//    }
 }

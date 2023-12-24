@@ -12,8 +12,12 @@ import java.util.Map;
 
 @Component
 public class TravelListDelegate implements JavaDelegate {
+    private final TravelService travelService;
+
     @Autowired
-    private TravelService travelService;
+    public TravelListDelegate(TravelService travelService) {
+        this.travelService = travelService;
+    }
 
     public void execute(DelegateExecution execution) throws Exception {
         Integer cityId = (Integer) execution.getVariable("cityId");
