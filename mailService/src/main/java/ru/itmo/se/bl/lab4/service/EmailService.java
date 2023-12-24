@@ -80,41 +80,4 @@ public class EmailService {
             throw new RuntimeException(e);
         }
     }
-
-//    @Scheduled(cron = "0 0 0 * * *")
-//    public void sendNotificationEmails() {
-//        Date date = Date.valueOf(LocalDate.now());
-//
-//        for (Booking booking: bookingService.getBookingsByDayDifference(date, 2)) {
-//            TouristInfo touristInfo = booking.getTouristInfo();
-//
-//            if (touristInfo != null && touristInfo.getEmail() != null) {
-//                EmailDetails details = new EmailDetails();
-//                details.setRecipient(touristInfo.getEmail());
-//                details.setSubject("Напоминание от Туристер.ру");
-//
-//                String firstName, lastName;
-//
-//                if (touristInfo.getPassport() != null) {
-//                    firstName = touristInfo.getPassport().getFirstName();
-//                    lastName = touristInfo.getPassport().getLastName();
-//                    String middleName = touristInfo.getPassport().getMiddleName();
-//
-//                    details.setMsgBody(String.format("Здравствуйте, %s %s %s! " +
-//                                    "Напоминаем Вам, что на %td.%tm.%tY забронирован вылет.",
-//                            lastName, firstName, middleName, booking.getBookingDate(), booking.getBookingDate(), booking.getBookingDate()));
-//                } else if (touristInfo.getInternationalPassport() != null) {
-//                    firstName = touristInfo.getInternationalPassport().getFirstName();
-//                    lastName = touristInfo.getInternationalPassport().getLastName();
-//
-//                    details.setMsgBody(String.format("Здравствуйте, %s %s! " +
-//                                    "Напоминаем Вам, что на %td.%tm.%tY забронирован вылет.",
-//                            firstName, lastName, booking.getBookingDate(), booking.getBookingDate(), booking.getBookingDate()));
-//                } else
-//                    continue;
-//
-//                sendEmail(details);
-//            }
-//        }
-//    }
 }
